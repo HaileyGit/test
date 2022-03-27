@@ -1,0 +1,122 @@
+---
+navigationLabel: Home
+---
+
+import { format } from "date-fns";
+
+<Grid
+  sx={{
+    mb: 6
+  }}
+>
+
+<SiteMetaData>
+  {(siteMetadata) => {
+    const { name, description } = siteMetadata;
+    return (
+      <Fragment>
+        <Heading variant="styles.h1">{name}</Heading>
+        <Text>{description}</Text>
+      </Fragment>
+    );
+  }}
+</SiteMetaData>
+
+<Grid
+  sx={{ 
+    alignItems: 'center',
+    gridTemplateColumns: 'auto 1fr'
+  }}
+>
+<Button
+  sx={{ mb: 2 }}
+  as="a"
+  variant="success"
+  href=""
+  target="_blank"
+>
+  테스트 페이지
+</Button>
+
+<Link sx={{ whiteSpace: 'nowrap' }} href="" target="_blank">
+  {/* gatsby-theme-terminal */}
+</Link>
+</Grid>
+
+<Alert variant="success">Alert... My website is faster than yours!</Alert>
+
+</Grid>
+
+<Grid
+  sx={{
+    gap: 0,
+    mb: 6
+  }}
+>
+
+## About
+
+블로그 수정중
+
+</Grid>
+
+<Grid sx={{ gridTemplateColumns: ['1fr', '1fr', '1fr 1fr'] }}>  
+<Box>
+
+## Contact
+
+<Heading variant="styles.h3" sx={{ mb: 0 }}>
+  Email
+</Heading>
+<hr />
+<Link href="Haileylim.ko@gmail.com" variant="styles.a">
+  haileylim.ko@gmail.com
+</Link>
+<hr />
+<hr />
+<Heading variant="styles.h3" sx={{ mb: 0 }}>
+  GitHub
+</Heading>
+<Link href="https://haileygit.github.io/" variant="styles.a">
+  https://haileygit.github.io/
+</Link>
+
+</Box>
+
+<Box>
+
+## Top 5 tags
+
+<SourceTags filter="posts">
+  {(tags) => (
+    <Flex sx={{ flexDirection: 'column' }}>
+      {tags
+        .splice(0, 5)
+        .sort((a, b) => b.percent - a.percent)
+        .map((tag, index) => {
+          const { name, count, percent } = tag
+          return (
+            <Box key={index} sx={{ color: 'muted', mb: 3, svg: { fill: 'muted' } }}>
+              <Flex sx={{ lineHeight: 'normal' }}>
+                <Text sx={{ color: 'secondary', mr: 2, mb: 0 }}>{`${name}`}</Text>
+                <Text sx={{ color: 'muted' }}>{percent}</Text>
+                <Text sx={{ color: 'error' }}>%</Text>
+              </Flex>
+              <Flex>
+                <Box>{'['}</Box>
+                <Box sx={{ flexBasis: '100%' }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 8" width="100%" height="8">
+                    <rect width={`${percent * 3}%`} height={4} />
+                  </svg>
+                </Box>
+                <Box> {']'}</Box>
+              </Flex>
+            </Box>
+          )
+        })}
+    </Flex>
+  )}
+</SourceTags>
+</Box>
+
+</Grid>
